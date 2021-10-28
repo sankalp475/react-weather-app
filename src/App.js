@@ -17,10 +17,14 @@ import Weather_forcast from './components/Weather_forcast';
 
 const App = () => {
 	const [Location, setLocation] = useState('')
-	const [weather, UpdateWeather] = useState([])
+	const [weatherArray, UpdateWeather] = useState([])
+
+	const [coords, setCoords] = useState([-78.1586, 16.4063])
 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 	// const API_URL = process.env.REACT_APP_URL
+
+
 
 	window.onload = () => {
 		const getStoreItems = localStorage.getItem('Location_name')
@@ -30,9 +34,12 @@ const App = () => {
 			{
 				Location: getStoreItems,
 			    KEY: API_KEY,
-			    UpdateWeather: (setsata) => {
-					UpdateWeather(setsata)
+			    UpdateWeather: (setdata) => {
+					UpdateWeather(setdata)
 				},
+				setcoords: (setcoords) => {
+					setCoords(setcoords)
+				}
 			}
 		)
     }
@@ -45,13 +52,19 @@ const App = () => {
 			{
 				Location: getStoreItems,
 				KEY: API_KEY,
-				UpdateWeather: (setsata) => {
-					UpdateWeather(setsata);
+				UpdateWeather: (setdata) => {
+					UpdateWeather(setdata);
 				},
+				setcoords: (setcoords) => {
+					setCoords(setcoords)
+				}
+
 			}
 		);
 
 	}, [Location])
+
+	// console.log(<Navbar />)
 
 	return (
 		<>
@@ -65,7 +78,9 @@ const App = () => {
 								Location={ Location }
 							/>
 							<Weather
-								weather={weather}
+								weatherInfoArray={weatherArray}
+								position={coords}
+								zoom={45}
 							/>
 							<Weathe_tabs
 

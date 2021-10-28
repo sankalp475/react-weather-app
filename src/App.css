@@ -134,7 +134,7 @@ nav {
 
    width: 100% !important;
    height: 200px;
-   background-color: #4338ca;
+   /* background-color: #4338ca; */
    padding: 3px 5px;
    font-family: var(--font-fira) !important;
 
@@ -166,9 +166,22 @@ nav {
 }
 .right_container {
 	/* background-color: blueviolet; */
-	display: flex;
-	flex-direction: row;
+	/* display: flex; */
+	/* flex-direction: row; */
+	position: relative;
 }
+
+.wether_map{
+	/* position: absolute; */
+}
+#root > div > div._weather_info_ > div.right_container > div > div {
+	height: 400px;
+	width: 100%;
+	position: relative;
+	top: 27px;
+
+}
+
 
 .ng-info {
 	display: flex;

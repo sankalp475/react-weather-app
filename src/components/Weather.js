@@ -1,5 +1,4 @@
-import React from 'react'
-// import { Cloud } from '../icon/icon'
+import React, { useState, useEffect } from 'react'
 import {
 	Cloud,
 	Clear_sky,
@@ -7,79 +6,87 @@ import {
 	Drizzle,
 	Rain,
 	Snowflake,
-	Windy_Weather,
+	WindyWeather,
+	// renderIcon
 } from '../icon/icon';
 
 
-const Weather = ({ weather }) => {
-	// console.log(weather.weather[0].id)
-
-	const WeatherIcons = [
-		{id:200, svgICON: <Storm height="70" width="70" />},
-		{id:201, svgICON: <Storm height="70" width="70" />},
-		{id:202, svgICON: <Storm height="70" width="70" />},
-		{id:210, svgICON: <Storm height="70" width="70" />},
-		{id:211, svgICON: <Storm height="70" width="70" />},
-		{id:212, svgICON: <Storm height="70" width="70" />},
-		{id:221, svgICON: <Storm height="70" width="70" />},
-		{id:230, svgICON: <Storm height="70" width="70" />},
-		{id:231, svgICON: <Storm height="70" width="70" />},
-		{id:232, svgICON: <Storm height="70" width="70" />},
-
-		{id:300, svgICON: <Drizzle height="70" width="70" />},
-		{id:301, svgICON: <Drizzle height="70" width="70" />},
-		{id:302, svgICON: <Drizzle height="70" width="70" />},
-		{id:310, svgICON: <Drizzle height="70" width="70" />},
-		{id:311, svgICON: <Drizzle height="70" width="70" />},
-		{id:312, svgICON: <Drizzle height="70" width="70" />},
-		{id:313, svgICON: <Drizzle height="70" width="70" />},
-		{id:314, svgICON: <Drizzle height="70" width="70" />},
-		{id:321, svgICON: <Drizzle height="70" width="70" />},
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import osm from "./osm-providers";
+import  '../resources/images/marker.png';
 
 
-		{id:500, svgICON:<Rain height="70" width="70" />},
-		{id:501, svgICON:<Rain height="70" width="70" />},
-		{id:502, svgICON:<Rain height="70" width="70" />},
-		{id:503, svgICON:<Rain height="70" width="70" />},
-		{id:504, svgICON:<Rain height="70" width="70" />},
-		{id:511, svgICON:<Rain height="70" width="70" />},
-		{id:520, svgICON:<Rain height="70" width="70" />},
-		{id:521, svgICON:<Rain height="70" width="70" />},
-		{id:522, svgICON:<Rain height="70" width="70" />},
-		{id:531, svgICON:<Rain height="70" width="70" />},
+const Weather = ({ position, zoom, weatherInfoArray }) => {
+	const [component, setcomponent] = useState(<Storm height="60" width="60" />)
+	const ID = weatherInfoArray.wetherID
 
-		{id:600, svgICON:<Snowflake height="70" width="70" />},
-		{id:601, svgICON:<Snowflake height="70" width="70" />},
-		{id:602, svgICON:<Snowflake height="70" width="70" />},
-		{id:611, svgICON:<Snowflake height="70" width="70" />},
-		{id:612, svgICON:<Snowflake height="70" width="70" />},
-		{id:613, svgICON:<Snowflake height="70" width="70" />},
-		{id:615, svgICON:<Snowflake height="70" width="70" />},
-		{id:616, svgICON:<Snowflake height="70" width="70" />},
-		{id:620, svgICON:<Snowflake height="70" width="70" />},
-		{id:621, svgICON:<Snowflake height="70" width="70" />},
-		{id:622, svgICON:<Snowflake height="70" width="70" />},
+	// const storm = <Storm />
 
 
-		{id:701, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:711, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:721, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:731, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:741, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:751, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:761, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:762, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:771, svgICON:<Windy_Weather height="70" width="70" />},
-		{id:781, svgICON:<Windy_Weather height="70" width="70" />},
+	useEffect(() => {
+		const element = []
+
+		if (weatherInfoArray.wetherID >= 200 && weatherInfoArray.wetherID <= 232) {
+
+			const el = <Storm height="60" width="60" />
+			element.push({ id: weatherInfoArray.wetherID })
+			setcomponent(el)
 
 
-		{id:800, svgICON:<Cloud height="70" width="70" />},
-		{id:801, svgICON:<Cloud height="70" width="70" />},
-		{id:802, svgICON:<Cloud height="70" width="70" />},
-		{id:803, svgICON:<Cloud height="70" width="70" />},
-		{id:804, svgICON:<Cloud height="70" width="70" />}
-	];
+		} else if (weatherInfoArray.wetherID >= 300 && weatherInfoArray.wetherID <= 321) {
 
+			const el = <Drizzle height="60" width="60" />
+			element.push({ id: weatherInfoArray.wetherID })
+			setcomponent(el)
+
+
+		} else if (weatherInfoArray.wetherID >= 500 && weatherInfoArray.wetherID <= 531) {
+
+
+			const el = <Rain height="60" width="60" />
+			element.push({ id: weatherInfoArray.wetherID })
+			setcomponent(el)
+
+		} else if (weatherInfoArray.wetherID >= 600 && weatherInfoArray.wetherID <= 622) {
+
+			const el = <Snowflake height="60" width="60" />
+			element.push({ id: weatherInfoArray.wetherID })
+			setcomponent(el)
+
+		} else if (weatherInfoArray.wetherID >= 701 && weatherInfoArray.wetherID <= 781) {
+
+			const el = <WindyWeather height="60" width="60" />
+			element.push({ id: weatherInfoArray.wetherID })
+			setcomponent(el)
+
+
+		} else if (weatherInfoArray.wetherID >= 801 && weatherInfoArray.wetherID <= 804) {
+
+			const el = <Cloud height="60" width="60" />
+			element.push({ id: weatherInfoArray.wetherID })
+			setcomponent(el)
+
+		} else if (weatherInfoArray.wetherID === 800) {
+
+			const el = <Clear_sky height="60" width="60" />
+			element.push({ id: weatherInfoArray.wetherID })
+			setcomponent(el)
+
+
+		}
+
+
+		console.log(element)
+	}, [ID]);
+
+	const markerIcon = new L.Icon({
+		iconUrl: require("resources/images/marker.png"),
+		iconSize: [40, 40],
+		iconAnchor: [17, 46], //[left/right, top/bottom]
+		popupAnchor: [0, -46], //[left/right, top/bottom]
+	});
 
 	return (
 		<div className="_weather_info_">
@@ -87,33 +94,45 @@ const Weather = ({ weather }) => {
 				<div className="_weather_condition_">
 					<div className='ng-info'>
 						<div className='_weather_condition__Icon'>
-                             
-				    	</div>
-				    	<div className='_weather_condition__Temp'>
-				    		<p>19</p>
-				    		<p>°C</p>
-				    	</div>
+							{component}
+						</div>
+						<div className='_weather_condition__Temp'>
+							<p>19</p>
+							<p>°C</p>
+						</div>
 					</div>
-			    	<div>
-			    		<p>
-			    			<span> Precipitation</span>: <span>30%</span>
-			    		</p>
-			    		<p>
-			    			<span> Humidity</span>:<span>81%</span>
-			    		</p><p>
-			    			<span>Wind</span>: =<span>18 km/h</span>
-			    		</p>
-			    	</div>
+					<div>
+						<p>
+							<span> Precipitation</span>: <span>30%</span>
+						</p>
+						<p>
+							<span> Humidity</span>:<span>81%</span>
+						</p><p>
+							<span>Wind</span>: =<span>18 km/h</span>
+						</p>
+					</div>
 				</div>
 
 				<div className="_weather_name_">
-                  right
-			    </div>
+					right
+				</div>
 			</div>
 			<div className="right_container">
-                <div className="wether_map">
+				<div className="wether_map">
+					<MapContainer center={position} zoom={zoom} scrollWheelZoom={true}>
+						<TileLayer
+							url={osm.maptiler.url}
+							attribution={osm.maptiler.attribution}
+						/>
+						<Marker position={position} icon={markerIcon} >
+							<Popup>
+								<b>
 
-			    </div>
+								</b>
+							</Popup>
+						</Marker>
+					</MapContainer>,
+				</div>
 			</div>
 		</div>
 	)
