@@ -1,38 +1,176 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+	--font-fira: 'Fira Code', monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.icon{
+	width: 20px;
+	height: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.neon-glow {
+	background-color:transparent;
+	border: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+nav {
+	position: fixed;
+	align-items: flex-end;
+	justify-content: flex-end;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* background: #ffffffd0; */
+    /* -webkit-backdrop-filter: blur(2px); */
+    /* backdrop-fil/ter: blur(2px); */
+	height: 50px;
+	background: linear-gradient( -3deg,#ffffff29 48.44%,hsl(0deg 0% 100%));
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.brand{
+	margin-left: 20px;
+	font-family: Operator Mono;
+	text-align: center;
+	text-transform: capitalize;
+	display: flex;
+    /* flex-direction: row; */
+	/* text-align: center;
+	justify-content: center;
+	align-content: center;
+	margin-top: 15px; */
+}
+
+.icon {
+	margin-right: 4px;
+	width: 14px;
+    height: 23px;
+}
+
+.container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1300px;
+	width: 1240px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.neon {
+	/* fill: #000; */
+	border: none;
+	cursor: pointer;
+    margin-right: 20px;
+	position: relative;
+	left: -20px;
+}
+
+.neon::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em #4338ca;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon:hover,
+.neon:focus {
+	fill: #5e4fe6;
+  text-shadow: none;
+  /* fill: white; */
+  /* filter: url(#red-glow); */
+}
+
+.brandname{
+	margin-left: 0px;
+	font-size: 1.2rem;
+}
+
+
+[content="area_content_container"] {
+	margin-top: 20px;
+    margin-bottom: 20px;
+	/* position: relative; */
+    /* top: 0px; */
+}
+
+._weather_info_{
+	position: relative;
+	top: 120px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+}
+
+ ._weather_condition_,
+._weather_name_ {
+
+   width: 100% !important;
+   height: 200px;
+   background-color: #4338ca;
+   padding: 3px 5px;
+   font-family: var(--font-fira) !important;
+
+
+}
+
+._weather_name_ {
+	background-color: #72eb10f5;
+}
+
+/*
+.wether_map{
+
+	width: 45%;
+	height: 160px;
+	background-color: #72eb10f5;
+
+} */
+
+
+.laft_container,
+.right_container{
+	width: 100%;
+	height: 400px;
+    /* background-color: #4338ca; */
+    padding: 3px 5px;
+	display: flex;
+	flex-direction: column-reverse;
+}
+.right_container {
+	/* background-color: blueviolet; */
+	display: flex;
+	flex-direction: row;
+}
+
+.ng-info {
+	display: flex;
+	flex-direction: row !important;
 }
