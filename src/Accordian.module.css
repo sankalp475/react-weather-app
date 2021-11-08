@@ -1,0 +1,231 @@
+.transition,
+ul li i:before,
+ul li i:after,
+p {
+    transition: all 0.25s ease-in-out;
+}
+
+.flipIn,
+ul li,
+h1 {
+    animation: flipdown 0.5s ease both;
+}
+
+.no-select,
+h2 {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	font-family: 'Zen Kurenaido', sans-serif ;
+}
+
+    /* html {
+        width: 100%;
+        height: 100%;
+        perspective: 900;
+        overflow-y: scroll;
+        background-color: #dce7eb;
+        font-family: "Titillium Web", sans-serif;
+        color: rgba(48, 69, 92, 0.8);
+    }
+
+    body {
+        min-height: 0;
+        display: inline-block;
+        position: relative;
+        left: 50%;
+        margin: 90px 0;
+        transform: translate(-50%, 0);
+        box-shadow: 0 10px 0 0 #ff6873 inset;
+        background-color: #fefffa;
+        max-width: 450px;
+        padding: 30px;
+    } */
+
+@media (max-width: 550px) {
+    body {
+        box-sizing: border-box;
+        transform: translate(0, 0);
+        max-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        left: 0;
+    }
+}
+
+ul {
+    list-style: none;
+    perspective: 900;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 4px;
+    padding-top: 18px;
+    border-top: 1px dotted #dce7eb;
+}
+
+ul li:nth-of-type(1) {
+    animation-delay: 0.5s;
+}
+
+ul li:nth-of-type(2) {
+    animation-delay: 0.75s;
+}
+
+ul li:nth-of-type(3) {
+    animation-delay: 1s;
+}
+
+ul li:last-of-type {
+    padding-bottom: 0;
+}
+
+ul li i {
+    position: absolute;
+    transform: translate(-6px, 0);
+    margin-top: 16px;
+    right: 0;
+}
+
+ul li i:before,
+ul li i:after {
+    content: "";
+    position: absolute;
+    background-color: #4338ca;
+    width: 3px;
+    height: 9px;
+}
+
+ul li i:before {
+    transform: translate(-2px, 0) rotate(45deg);
+}
+
+ul li i:after {
+    transform: translate(2px, 0) rotate(-45deg);
+}
+
+ul li input[type=checkbox] {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+	transition: all .2s linear;
+}
+
+ul li input[type=checkbox]:checked~div {
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translate(0, 50%);
+	transition: all .2s linear;
+}
+
+ul li input[type=checkbox]:checked~i:before {
+    transform: translate(2px, 0) rotate(45deg);
+}
+
+ul li input[type=checkbox]:checked~i:after {
+    transform: translate(-2px, 0) rotate(-45deg);
+}
+
+@keyframes flipdown {
+    0% {
+        opacity: 0;
+        transform-origin: top center;
+        transform: rotateX(-90deg);
+    }
+    5% {
+        opacity: 1;
+    }
+    80% {
+        transform: rotateX(8deg);
+    }
+    83% {
+        transform: rotateX(6deg);
+    }
+    92% {
+        transform: rotateX(-3deg);
+    }
+    100% {
+        transform-origin: top center;
+        transform: rotateX(0deg);
+    }
+}
+
+[class='Grid_flex_WC']{
+	min-height: 100%;
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+[class='Grid_flex_WC'] > div{
+	display: flex;
+    flex-basis: calc(50% - 40px);
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+[class='Grif_element1'],
+[class='Grif_element2'],
+[class='Grif_element3'],
+[class='Grif_element4']{
+	height: 95px;
+	margin-top: 10px;
+	border: 2px solid #4338ca;
+	margin-right: 10px;
+	border-radius: 5px;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+}
+
+[class='info_W_']{
+	height: 60px;
+    display: flex !important;
+	justify-content: space-between;
+	align-content: space-around;
+	text-align: center;
+}
+
+[class='elementDiv_info']{
+	display: flex;
+	flex-direction: column;
+	margin-right: 30px;
+}
+
+[class='element_']{
+    margin-left: 30px;
+	display: flex !important;
+	/* justify-content: center; */
+	align-items: center;
+	width: 100%;
+    height: 36px;
+}
+
+[class='element_e']{
+    margin-left: 30px;
+	margin-left: 30px;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+    height: 36px;
+}
+
+[class='element_e']:nth-child(2) {
+	margin-bottom: 20px;
+}

@@ -1,23 +1,21 @@
-
-// import React from 'react'
 import axios from 'axios'
 
 
-const FetchWeather = async ({ Location, KEY, UpdateWeather, setcoords }) => {
+const FetchWeather = async ({ Location, KEY_CODE, setcoords, Location_Arry, Forcast, Current }) => {
 
-
-
-	axios.get(
-		`http://api.openweathermap.org/data/2.5/weather?q=${Location}&appid=${KEY}`
-	).then((res) => {
-		// console.log(res.data.weather[0].id)
-		const data = res.data
-		UpdateWeather({ data: res.data, wetherID: res.data.weather[0].id })
-		setcoords([data.coord.lat, data.coord.lon])
-		console.log([data.coord.lat, data.coord.lon])
-	}).catch((error) => {
-		console.log(error.massage)
-	})
+    try {
+		axios.get(
+			`https://api.weatherapi.com/v1/forecast.json?key=${KEY_CODE}&q=${Location}&days=7&aqi=yes&alerts=yes`
+		).then((res) => {
+			console.log(res.data);
+			Location_Arry(res.data.location)
+			Forcast(res.data.forecast.forecastday)
+			Current(res.data.current)
+			setcoords({lat: res.data.location.lat , lng: res.data.location.lon })
+		})
+	} catch (error) {
+       console.log(error.massage)
+	}
 
 }
 
