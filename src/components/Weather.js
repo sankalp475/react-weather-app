@@ -22,11 +22,11 @@ import Accordian from './Accordian';
 // import osm from "./osm-providers";
 // // import Popup from 'react-leaflet-editable-popup'
 // import Map from './Map';
-
+import Condition from './Condition';
 
 
 const Weather = ({ Coordinates, zoom, forcast, current, location, type }) => {
-	// const [component, setcomponent] = useState(<Storm height="60" width="60" />)
+
 	// const [W_condition, setW_condition] = useState('')
 	// const [seunset_sunrize, setseunset_sunrize] = useState('')
 
@@ -86,7 +86,9 @@ const Weather = ({ Coordinates, zoom, forcast, current, location, type }) => {
 	};
 
 	const { containerStyle } = styles;
-	console.log(type)
+
+
+
 
 	return (
 		<div className="_weather_info_">
@@ -95,7 +97,8 @@ const Weather = ({ Coordinates, zoom, forcast, current, location, type }) => {
 				<h1 className='W_heading'>Today's Forecast for {location?.name}, {location?.country}</h1>
 				<div className='top_info'>
 					<div className='left'>
-						<Drizzle height={130} width={130} />
+						{/* <Drizzle height={130} width={130} /> */}
+						<img src={current?.condition?.icon} height={130} width={130}/>
 					</div>
 					<div className='wether_info_card'>
 						<div className='W_info'>
@@ -126,38 +129,42 @@ const Weather = ({ Coordinates, zoom, forcast, current, location, type }) => {
 					</div>
 					<div className='forcast' style={containerStyle}>
 						<div className='card_container'>
-							{forcast?.map(items => {
-								return (
-									<>
-										<div className='label'>{items.date}</div>
-										{items?.hour.map((hours) => {
-											return (
-												<Accordian
-													time={hours?.time}
-													place={`${location?.name}, ${location?.country}`}
-													uvray={hours?.uv}
-													visibilityKM={hours?.vis_km}
-													visibilitymiles={hours?.vis_miles}
-													temp_c={hours?.temp_c}
-													temp_f={hours?.temp_f}
-													type={type}
-													condition={hours?.condition?.text}
-													humidity={hours?.humidity}
-													W_speed={hours?.wind_kph}
-													wind_degree={hours?.wind_degree}
-
-													maxtemp_c={items?.day?.maxtemp_c}
-													maxtemp_f={items?.day?.maxtemp_f}
-													mintemp_c={items?.day?.mintemp_c}
-													mintemp_f={items?.day?.mintemp_f}
-													wind_dir={hours?.wind_dir}
-													wind_degree={hours?.wind_degree}
-												/>
-											)
-										})}
-									</>
-								)
-							})}
+							{forcast?.map(
+								(items) => {
+								    return (
+								    	<>
+								    		<div className='label'>{items.date}</div>
+								    		{items?.hour.map(
+								    			(hours) => {
+								    			    return (
+								    			    	<Accordian
+															time={hours?.time}
+															place={`${location?.name}, ${location?.country}`}
+															uvray={hours?.uv}
+															visibilityKM={hours?.vis_km}
+															visibilitymiles={hours?.vis_miles}
+															temp_c={hours?.temp_c}
+															temp_f={hours?.temp_f}
+															type={type}
+															condition={hours?.condition?.text}
+															humidity={hours?.humidity}
+															W_speed={hours?.wind_kph}
+															wind_degree={hours?.wind_degree}
+															maxtemp_c={items?.day?.maxtemp_c}
+															maxtemp_f={items?.day?.maxtemp_f}
+															mintemp_c={items?.day?.mintemp_c}
+															mintemp_f={items?.day?.mintemp_f}
+															wind_dir={hours?.wind_dir}
+															wind_degree={hours?.wind_degree}
+															SRC={current?.condition?.icon}
+								    			    	/>
+								    			    )
+								    			}
+								    		)}
+								    	</>
+								    )
+								}
+							)}
 						</div>
 					</div>
 				</div>

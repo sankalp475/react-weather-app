@@ -34,7 +34,8 @@ const Accordian = ({ W_speed,
 	mintemp_c,
 	mintemp_f,
 	wind_dir,
-	wind_degree}) => {
+	wind_degree,
+	SRC }) => {
 
 	const [checked, setchecked] = useState(true)
 
@@ -61,7 +62,7 @@ const Accordian = ({ W_speed,
 							</div>
 							<div className='element_'>
 								<p className='W_p_info'>{ condition }</p>
-                               <Snowflake height={50} width={50} />
+								<img src={SRC}  height={50} width={50}/>
 							</div>
 						</div>
 						<div className='elementDiv_info'>
