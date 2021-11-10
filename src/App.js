@@ -114,6 +114,7 @@ const App = () => {
 								type={VALUE1}
 							/>
 			            </div>
+						
 					</Route>
 				</Switch>
 			</Router>

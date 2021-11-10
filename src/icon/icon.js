@@ -131,17 +131,7 @@ const Arrow = ({ height, width, style }) => {
 // || <ThermometerDown />
 // || <Arrow />
 
-// const ICON = () => {
 
-// 	return (
-// 		<>
-// 			{(code === 1000) ? <Sunny /> : (code === 1003 || code === 1006 || code === 1009) ? <Cloud />
-// 				: (code === 1000)}
-// 		</>
-// 	)
-// }
-
-// export default ICON
 export {
 	Cloud,
 	Sunny,

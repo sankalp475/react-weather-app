@@ -33,6 +33,9 @@ const Navbar = () => {
 
 					<p className="brandname">React-Weather-App</p>
 				</div>
+				<div className='Credit'>
+					<p>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></p>
+				</div>
 				<div className="icon">
 					<button className="neon-glow" onClick={redirect}>
 						<svg

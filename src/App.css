@@ -493,3 +493,13 @@ form[name="search"] > input {
 	font-weight: 800;
 	margin: 20px 20px;
 }
+
+.Credit{
+	background-color: #f1f1f1;
+	padding: 10px 20px;
+	border-radius: .51rem;
+}
+
+.Credit > p > a {
+	text-decoration: none;
+}
